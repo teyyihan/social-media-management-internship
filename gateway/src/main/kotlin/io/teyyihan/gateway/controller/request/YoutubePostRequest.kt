@@ -1,9 +1,9 @@
-package io.teyyihan.gateway.domain.command
+package io.teyyihan.gateway.controller.request
 
-data class YoutubePostCommand(
+data class YoutubePostRequest(
     val title: String,
-    val body: String?,
+    val description: String?,
     val video: String?,
     val overlayText: String?,
     val backgroundVideo: String?
-): Command
+)
