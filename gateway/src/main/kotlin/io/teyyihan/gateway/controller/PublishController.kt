@@ -1,10 +1,9 @@
 package io.teyyihan.gateway.controller
 
+import io.teyyihan.gateway.domain.model.SocialPlatform
 import org.springframework.http.HttpStatus
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 @RestController
 @RequestMapping("/publish")
@@ -12,7 +11,7 @@ class PublishController {
 
     @PostMapping("/post")
     @ResponseStatus(HttpStatus.CREATED)
-    fun post(request: Map<String, String>) {
+    fun post(@RequestBody request: Map<SocialPlatform, Map<String, String>>) {
 
     }
 
