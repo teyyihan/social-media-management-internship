@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/publish")
 class InstagramPublishController(
-    private val handlerfactory: HandlerFactory
+    private val handlerFactory: HandlerFactory
 ) {
 
     @PostMapping("/post/instagram/default")
     @ResponseStatus(HttpStatus.CREATED)
     fun postInstagramDefault(@RequestBody request: InstagramDefaultPostRequest) {
-        val handler = handlerfactory.getHandler(InstagramDefaultPostCommand::class.java)
+        val handler = handlerFactory.getHandler(InstagramDefaultPostCommand::class.java)
         handler.execute(request.toCommand())
     }
 
     @PostMapping("/post/instagram/custom")
     @ResponseStatus(HttpStatus.CREATED)
     fun postInstagramCustom(@RequestBody request: InstagramCreateMediaPostRequest) {
-        val handler = handlerfactory.getHandler(InstagramCreateMediaPostCommand::class.java)
+        val handler = handlerFactory.getHandler(InstagramCreateMediaPostCommand::class.java)
         handler.execute(request.toCommand())
     }
 

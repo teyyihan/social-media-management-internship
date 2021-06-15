@@ -1,7 +1,7 @@
 package io.teyyihan.gateway.domain.command
 
-data class InstagramCreateMediaPostCommand(
+data class TwitterCreateMediaPostCommand(
     val body: String?,
     val overlayText: String?,
     val backgroundImage: String?
-) : Command
+): Command
