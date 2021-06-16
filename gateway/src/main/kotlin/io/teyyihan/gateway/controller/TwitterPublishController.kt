@@ -1,30 +1,28 @@
 package io.teyyihan.gateway.controller
 
-import io.teyyihan.gateway.controller.request.InstagramCreateMediaPostRequest
-import io.teyyihan.gateway.controller.request.InstagramDefaultPostRequest
-import io.teyyihan.gateway.domain.command.HandlerFactory
-import io.teyyihan.gateway.domain.command.InstagramCreateMediaPostCommand
-import io.teyyihan.gateway.domain.command.InstagramDefaultPostCommand
+import io.teyyihan.gateway.controller.request.TwitterCreateMediaPostRequest
+import io.teyyihan.gateway.controller.request.TwitterDefaultPostRequest
+import io.teyyihan.gateway.domain.command.*
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/publish/instagram")
-class InstagramPublishController(
+@RequestMapping("/publish/twitter")
+class TwitterPublishController(
     private val handlerFactory: HandlerFactory
 ) {
 
     @PostMapping("/post/default")
     @ResponseStatus(HttpStatus.CREATED)
-    fun postInstagramDefault(@RequestBody request: InstagramDefaultPostRequest) {
-        val handler = handlerFactory.getHandler(InstagramDefaultPostCommand::class.java)
+    fun postTwitterDefault(@RequestBody request: TwitterDefaultPostRequest) {
+        val handler = handlerFactory.getHandler(TwitterDefaultPostCommand::class.java)
         handler.execute(request.toCommand())
     }
 
     @PostMapping("/post/custom")
     @ResponseStatus(HttpStatus.CREATED)
-    fun postInstagramCustom(@RequestBody request: InstagramCreateMediaPostRequest) {
-        val handler = handlerFactory.getHandler(InstagramCreateMediaPostCommand::class.java)
+    fun postTwitterCustom(@RequestBody request: TwitterCreateMediaPostRequest) {
+        val handler = handlerFactory.getHandler(TwitterCreateMediaPostCommand::class.java)
         handler.execute(request.toCommand())
     }
 

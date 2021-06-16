@@ -9,19 +9,19 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/publish")
+@RequestMapping("/publish/instagram")
 class InstagramPublishController(
     private val handlerFactory: HandlerFactory
 ) {
 
-    @PostMapping("/post/instagram/default")
+    @PostMapping("/post/default")
     @ResponseStatus(HttpStatus.CREATED)
     fun postInstagramDefault(@RequestBody request: InstagramDefaultPostRequest) {
         val handler = handlerFactory.getHandler(InstagramDefaultPostCommand::class.java)
         handler.execute(request.toCommand())
     }
 
-    @PostMapping("/post/instagram/custom")
+    @PostMapping("/post/custom")
     @ResponseStatus(HttpStatus.CREATED)
     fun postInstagramCustom(@RequestBody request: InstagramCreateMediaPostRequest) {
         val handler = handlerFactory.getHandler(InstagramCreateMediaPostCommand::class.java)
