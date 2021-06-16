@@ -1,5 +1,7 @@
+import time
 from PIL import Image, ImageFont, ImageDraw
 
+IMG_DIRECTORY = "../images/"
 
 def load_image_from_path(path: str):
     return Image.open(path)
@@ -21,3 +23,11 @@ def set_text_center(img: Image, text: str, font: ImageFont):
 
     return img
 
+
+def save_image(img: Image, user_id: str):
+
+    now = time.time_ns() / 1_000_000
+
+    file_path = user_id + '-' + str(now) + '.jpg'
+
+    img.save(IMG_DIRECTORY + file_path)
