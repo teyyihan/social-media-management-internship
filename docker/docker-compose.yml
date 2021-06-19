@@ -1,0 +1,18 @@
+version: '3'
+
+services: 
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    ports: 
+      - "2181:2182"
+
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    ports: 
+      - "9092:9092"
+    environment: 
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_CREATE_TOPICS: "instagram.post.image:1:1,twitter.post.image:1:1"
