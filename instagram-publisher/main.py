@@ -1,16 +1,33 @@
-# This is a sample Python script.
-
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+import requests
+from kafka import KafkaConsumer
+from json import loads
 
 
-# Press the green button in the gutter to run the script.
+def get_kafka_consumer():
+    return KafkaConsumer(
+        *['instagram.post.image.custom', 'twitter.post.image'],
+        bootstrap_servers=['localhost:9092'],
+        enable_auto_commit=True,
+        value_deserializer=lambda x: loads(x.decode('utf-8')))
+
+
+DUMMY_INSTAGRAM_POST_URL = "https://upload.instagram.com"
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    consumer = get_kafka_consumer()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    for message in consumer:
+        topic = message.topic
+        payload = message.value
+
+        """
+        {
+        text: "Merhaba bu ilk postum",
+        image: "https://",
+        userId  ???
+        }
+        """
+
+        post_data = {}
+
+        requests.post(DUMMY_INSTAGRAM_POST_URL, data=post_data)
