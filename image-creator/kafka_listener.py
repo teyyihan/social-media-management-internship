@@ -1,9 +1,10 @@
-from config import config
 from json import loads, dumps
 from kafka import KafkaConsumer, KafkaProducer
+from service import image_service
 
 consumer = KafkaConsumer(
-    *['instagram.post.image', 'twitter.post.image'],
+    # TODO: config'den oku
+    *['instagram.create.image'],
     bootstrap_servers=['localhost:9092'],
     enable_auto_commit=True,
     value_deserializer=lambda x: loads(x.decode('utf-8')))
@@ -12,10 +13,24 @@ producer = KafkaProducer(bootstrap_servers=['localhost:9092'],
                          value_serializer=lambda x:
                          dumps(x).encode('utf-8'))
 
-# TODO: payload'da isteğin de bir id'si olmalı
+PUBLISH_POST_TOPIC = "{}.post.image"
+
 for message in consumer:
     topic = message.topic
     payload = message.value
-    # TODO: proccess and publish message with a image link, userId and isteğin id'si
-    returnValue = {}
-    producer.send(topic, value=returnValue)
+
+    user_id = payload.userId
+    overlay_text = payload.overlayText
+    background_image = payload.backgroundImage
+
+    image_link = image_service.process_image_creation_event(user_id, overlay_text, background_image)
+
+    message_payload = {
+        "userId": user_id,
+        "images": [image_link],
+        "body": payload.body
+    }
+
+    post_topic = PUBLISH_POST_TOPIC.format(payload.platform)
+
+    producer.send(post_topic, value=message_payload)

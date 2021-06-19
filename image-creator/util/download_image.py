@@ -1,6 +1,8 @@
+import io
 import time
 
 import requests
+from PIL import Image
 
 
 def file_name(user_id: str):
@@ -8,9 +10,7 @@ def file_name(user_id: str):
     return user_id + '-' + str(now) + '.jpg'
 
 
-def download_image(path: str, url: str):
-    r = requests.get(url)
-
-    with open(path, 'wb') as f:
-        f.write(r.content)
+def download_image(url):
+    data = requests.get(url).content
+    return Image.open(io.BytesIO(data))
 
