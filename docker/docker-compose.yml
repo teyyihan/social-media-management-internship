@@ -60,3 +60,9 @@ services:
   image-creator:
     build: ../image-creator/
     container_name: image-creator
+
+  gateway: 
+    build: ../gateway/docker
+    container_name: gateway
+    ports:
+      - 8081:8081

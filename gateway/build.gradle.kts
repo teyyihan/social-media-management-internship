@@ -39,3 +39,9 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+tasks.register<Copy>("copyJar") {
+    from(file("$buildDir/libs/gateway-0.0.1-SNAPSHOT.jar"))
+    into(file("docker"))
+}
+

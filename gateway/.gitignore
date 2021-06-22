@@ -35,3 +35,5 @@ out/
 
 ### VS Code ###
 .vscode/
+
+docker/gateway-0.0.1-SNAPSHOT.jar
