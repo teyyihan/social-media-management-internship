@@ -29,6 +29,8 @@ def dummy_upload_to_instagram(payload):
 if __name__ == '__main__':
     consumer = get_kafka_consumer()
 
+    print("Connected to Kafka")
+
     for message in consumer:
         topic = message.topic
 
