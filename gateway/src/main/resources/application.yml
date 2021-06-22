@@ -1,0 +1,30 @@
+spring:
+  jackson:
+    mapper:
+      ACCEPT_CASE_INSENSITIVE_PROPERTIES: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: social
+            client-secret: 28723b15-f1e0-4001-8a94-2d4ff2bb9377
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/auth/realms/social
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8080/auth/realms/social/protocol/openid-connect/certs
+
+
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    bootstrap-servers: kafka:9092
+
+server:
+  port: 8081
+
+

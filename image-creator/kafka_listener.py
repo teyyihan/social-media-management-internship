@@ -1,10 +1,10 @@
 from json import loads, dumps
 from kafka import KafkaConsumer, KafkaProducer
 from service import image_service
+from config import config
 
 consumer = KafkaConsumer(
-    # TODO: config'den oku
-    *['instagram.create.image'],
+    *config.KafkaConfigs["topics"],
     bootstrap_servers=['localhost:9092'],
     enable_auto_commit=True,
     value_deserializer=lambda x: loads(x.decode('utf-8')))

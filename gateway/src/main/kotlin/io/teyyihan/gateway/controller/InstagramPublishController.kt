@@ -1,7 +1,8 @@
 package io.teyyihan.gateway.controller
 
-import io.teyyihan.gateway.controller.request.InstagramCreateMediaPostRequest
-import io.teyyihan.gateway.controller.request.InstagramDefaultPostRequest
+
+import io.teyyihan.gateway.controller.request.instagram.InstagramCreateMediaPostRequest
+import io.teyyihan.gateway.controller.request.instagram.InstagramDefaultPostRequest
 import io.teyyihan.gateway.domain.command.HandlerFactory
 import io.teyyihan.gateway.domain.command.InstagramCreateMediaPostCommand
 import io.teyyihan.gateway.domain.command.InstagramDefaultPostCommand

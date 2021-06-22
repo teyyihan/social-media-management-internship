@@ -13,7 +13,7 @@ def load_empty_image():
 
 
 def load_font():
-    return ImageFont.truetype("../static/arial.ttf", size=50)
+    return ImageFont.truetype("static/arial.ttf", size=50)
 
 
 def set_text_center(img: Image, text: str, font: ImageFont):

@@ -30,8 +30,10 @@ if __name__ == '__main__':
         topic = message.topic
 
         payload = message.value
-        user_id = payload.userId
-        images = payload.images
-        body = payload.body
+        user_id = payload["userId"]
+        images = payload["images"]
+        body = payload["body"]
+
+        print(payload)
 
         # TODO: upload images
