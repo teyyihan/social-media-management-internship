@@ -1,2 +1,4 @@
+import kafka_listener
+
 if __name__ == '__main__':
-    print("sdfsdfsd")
+    kafka_listener.execute()

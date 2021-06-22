@@ -49,7 +49,14 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_CREATE_TOPICS: "instagram.post.image:1:1,twitter.post.image:1:1"
 
-
   instagram-publisher:
     build: ../instagram-publisher/
     container_name: instagram-publisher
+
+  twitter-publisher:
+    build: ../twitter-publisher/
+    container_name: twitter-publisher
+
+  image-creator:
+    build: ../image-creator/
+    container_name: image-creator

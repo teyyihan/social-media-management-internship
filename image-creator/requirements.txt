@@ -1,0 +1,4 @@
+requests~=2.25.1
+Pillow~=8.2.0
+kafka-python~=2.0.2
+PyYAML~=5.4.1

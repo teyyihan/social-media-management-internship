@@ -9,7 +9,7 @@ from json import loads
 def get_kafka_consumer():
     return KafkaConsumer(
         *['twitter.post.image'],
-        bootstrap_servers=['localhost:9092'],
+        bootstrap_servers=['kafka:9092'],
         enable_auto_commit=True,
         value_deserializer=lambda x: loads(x.decode('utf-8')))
 
