@@ -1,6 +1,15 @@
+import random
+import string
+
 from util import draw_image, download_image
 
 font = draw_image.load_font()
+
+
+def generate_random_link():
+    letters = string.ascii_lowercase
+    random_path = ''.join(random.choice(letters) for _ in range(10))
+    return "https://i0.social.com/" + str(random_path)
 
 
 def process_image_creation_event(user_id, overlay_text, background_image):
@@ -15,4 +24,4 @@ def process_image_creation_event(user_id, overlay_text, background_image):
 
     draw_image.save_image(image, user_id)
 
-    return "https://gottem"  # TODO: generate random link
+    return generate_random_link()

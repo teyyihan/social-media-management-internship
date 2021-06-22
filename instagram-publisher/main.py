@@ -21,7 +21,10 @@ def download_image(url):
 
 DUMMY_INSTAGRAM_POST_URL = "https://upload.instagram.com"
 
-# TODO: toggle demo fake via config
+
+def dummy_upload_to_instagram(payload):
+    print("Uploaded successfully payload: "+str(payload))
+
 
 if __name__ == '__main__':
     consumer = get_kafka_consumer()
@@ -36,4 +39,4 @@ if __name__ == '__main__':
 
         print(payload)
 
-        # TODO: upload images
+        dummy_upload_to_instagram(payload)
