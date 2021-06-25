@@ -18,22 +18,28 @@ def execute():
 
     PUBLISH_POST_TOPIC = "{}.post.image"
 
+    print("Listening topics: ", *config.KafkaConfigs["topics"])
+
     for message in consumer:
         topic = message.topic
         payload = message.value
 
-        user_id = payload.userId
-        overlay_text = payload.overlayText
-        background_image = payload.backgroundImage
+        print("Message from topic: ", topic, " payload: ", payload)
+
+        user_id = payload["userId"]
+        overlay_text = payload["overlayText"]
+        background_image = payload["backgroundImage"]
 
         image_link = image_service.process_image_creation_event(user_id, overlay_text, background_image)
 
         message_payload = {
             "userId": user_id,
             "images": [image_link],
-            "body": payload.body
+            "body": payload["body"]
         }
 
-        post_topic = PUBLISH_POST_TOPIC.format(payload.platform)
+        post_topic = PUBLISH_POST_TOPIC.format(payload["platform"])
 
         producer.send(post_topic, value=message_payload)
+
+        print("Sent payload to: ", post_topic, " payload: ", message_payload)

@@ -1,7 +1,6 @@
 package io.teyyihan.gateway.controller.request.twitter
 
 import io.teyyihan.gateway.domain.command.TwitterCreateMediaPostCommand
-import io.teyyihan.gateway.domain.model.SocialPlatform
 
 data class TwitterCreateMediaPostRequest(
     val body: String?,
@@ -9,6 +8,6 @@ data class TwitterCreateMediaPostRequest(
     val backgroundImage: String?
 ) {
 
-    fun toCommand() = TwitterCreateMediaPostCommand(body, overlayText, backgroundImage, SocialPlatform.Instagram.name)
+    fun toCommand() = TwitterCreateMediaPostCommand(body, overlayText, backgroundImage)
 
 }

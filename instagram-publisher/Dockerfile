@@ -6,4 +6,4 @@ RUN pip3 install -r requirements.txt
 
 COPY . /
 
-ENTRYPOINT ["./wait-for-it.sh", "kafka:9092","--timeout=60", "--", "python3", "main.py"]
+ENTRYPOINT ["./wait-for-it.sh", "kafka:9092","--timeout=60", "--", "python3", "-u", "main.py"]

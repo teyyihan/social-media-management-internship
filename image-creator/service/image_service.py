@@ -13,7 +13,6 @@ def generate_random_link():
 
 
 def process_image_creation_event(user_id, overlay_text, background_image):
-
     if background_image is None:
         image = draw_image.load_empty_image()
     else:

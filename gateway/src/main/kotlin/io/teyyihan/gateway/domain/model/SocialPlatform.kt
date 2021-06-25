@@ -1,7 +1,6 @@
 package io.teyyihan.gateway.domain.model
 
-enum class SocialPlatform {
-    Twitter,
-    Instagram,
-    Youtube;
+enum class SocialPlatform(val topic: String) {
+    Twitter("twitter"),
+    Instagram("instagram");
 }
